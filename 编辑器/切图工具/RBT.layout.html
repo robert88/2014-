@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>layout</title>
+	<meta charset="utf-8">
+	<script src="lib/RBT.namespace.js" type="text/javascript" charset="utf-8"></script>	
+	<script src="lib/RBT.extend.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/RBT.each.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/RBT.browser.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/RBT.dom.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/RBT.getLocalFile.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/RBT.ui.style.filter.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/RBT.ui.cutImage.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/RBT.ui.select.js" type="text/javascript" charset="utf-8"></script>
+
+
+	<style type="text/css">
+		body{background:#58A0AF;}
+	</style>
+	<link rel="stylesheet" href="css/RBT.layout.css" />
+	
+</head>
+<body>
+	<div id="RBT">
+		<div class="panel"></div>
+		<input type="file" value="file" id="getBg" />
+		<div id="qiege" class="button blue" style="position:absolute;display:none;">分割</div>
+	</div>
+
+</body>
+<script>
+window.onload = function(){
+	var dom = RBT.dom,
+		select =  RBT.ui.select,
+		cutImage= RBT.ui.cutImage,
+		g_file = RBT.data.files;
+		
+	var context = dom("#RBT .panel");
+		
+	var newImage = new Image();
+	
+	dom(document,"#RBT>input").getFile( //g_file
+		function(file){
+			newImage.src = file.data;
+			newImage.onload = function(){
+				context.append(newImage);
+			}
+		}
+	);
+	
+	select.get(context[0],//select
+		function(){
+			dom("#qiege").hide();
+		},
+		function(){
+			if(select.data.w){
+				dom("#qiege").show().css({
+					left:(select.data.x + select.data.w) + "px",
+					top:(select.data.y +select.data.h) + "px"
+				});
+			}
+
+		}
+	);
+	
+	dom("#qiege").bind("click",function(){
+		
+		cutImage( newImage, g_file, select.data.w, select.data.h, select.data.x, select.data.y);
+		console.log("bakc")
+	})
+}
+
+</script>
+</html>
