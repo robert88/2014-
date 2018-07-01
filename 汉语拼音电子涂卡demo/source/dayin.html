@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>dayin</title>
+
+<style type="text/css" rel="stylesheet">
+*{margin:0;padding:0;}
+#dy_bm div{width:803px;height:485px;display:none;}
+#dy_bm #page0{display:block;}
+#dy_bm{width:803px;height:485px;position:relative;}
+
+.left,.right{width:390px;height:480px;float:left;}
+ul li{width:350px;height:200px;list-style:none;position:relative;padding:20px;}
+.select{position:absolute;left:5px;top:5px;}
+.bord{border:2px solid #fff;border-radius:10px;-moz-border-radius:10px; }
+p{width:33px;height:34px;background:url(images/yuan.png)}
+
+.print{width:96px;height:43px;margin:14px;float:left;background:url(images/queding.png) no-repeat center}
+.print:hover{background:url(images/queding_h.png) no-repeat center}
+.preview,.next,.text{position:absolute;width:103px;height:43px;}
+.preview{background:url(images/perview.png);left:0px;top:0px;display:none;}
+.preview:hover{background:url(images/perview_h.png)}
+.next{background:url(images/next.png);left:206px;top:0px;}
+.next:hover{background:url(images/next_h.png)}
+.text{margin-left:10px;color:#940;font-size:35px;font-weight:900;;left:103px;top:0px;}
+</style>
+<script type="text/javascript" src="scripts/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+var curclick=[];
+var curImage=[];
+var printObj="";
+var tempBody;
+var gPage=0;
+$(document).ready(function(){
+$(".text").html((gPage+1)+"/"+$("#dy_bm div").length)
+document.onfocus=function(){return false;}
+document.ondragstart=function(){return false;}
+document.onselect=function(){return false;}
+document.onselectstart=function(){return false;}
+	var perImage2=[];
+	var basicURL2 = "images/";
+	var perData2=["next_h.png","yuan_h.png","perview_h.png"];
+	for(var i=0;i<perData2.length;i++){
+		perImage2[i] = new Image();
+		perImage2[i].src = basicURL2 + perData2[i];
+	}
+});
+/*打印返回*/
+function showBody(){
+	$("body").html(tempBody);
+}
+/*上一頁*/
+function prev(){
+	if(gPage>0){
+		gPage--;
+		if(gPage==0){
+			$(".preview").hide();
+		}
+		$(".text").html((gPage+1)+"/"+$("#dy_bm div").length);
+		var divObj=$("#dy_bm div").toArray()
+		$(divObj[gPage]).show();
+		$(divObj[gPage+1]).hide();
+	}
+}
+/*下一頁*/
+function nex(){
+	if(gPage<$("#dy_bm div").length-1){
+		gPage++;
+		if(gPage==1){
+			$(".preview").show();
+		}
+		$(".text").html((gPage+1)+"/"+$("#dy_bm div").length);
+		var divObj=$("#dy_bm div").toArray()
+		$(divObj[gPage-1]).hide();
+		$(divObj[gPage]).show();
+	}
+}
+/*選擇要打印的對象*/
+function changeSlect(idx){
+	var record;
+	if(curclick[idx]){
+		$("#slete"+idx).css("background","url(images/yuan.png)")
+		curclick[idx]=0;
+		curImage.splice(idx,1,null);
+		if((idx+1)==curImage.length){
+		for(var i=0;i<curImage.length;i++){
+			if(curImage[i]){
+				record=i+1;
+			}
+		}
+		curImage.length=record;
+		}
+	}else{
+		curclick[idx]=1;
+		if((idx+1)>curImage.length){
+			curImage.length=idx;
+		}
+		curImage.splice(idx,1,$("#slete"+idx).next().attr("src"))
+		$("#slete"+idx).css("background","url(images/yuan_h.png)")
+	}
+}
+/*打印函數*/
+function WindowPrint(){
+	for(var i=0;i<curImage.length;i++){
+		if(curImage[i]){
+			printObj+="<img src='"+curImage[i]+"'><br>";
+		}
+	}
+	if(printObj){
+		tempBody=$("body").html();
+		$("body").html("您打印的內容如下：</br><button onclick='showBody()'>返回</button></br>"+printObj);
+		window.print();
+		printObj="";
+	}else{
+		alert("請選擇您要打印的內容。")
+	}
+}
+</script>
+</head>
+<body>
+<div id="dayin_bg" style="background:url(images/bg.png) no-repeat bottom;width:803px;height:550px;">
+<div id="dy_bm">
+	<div id="page0">
+		<ul class="left">
+			<li><p class="select" onclick="changeSlect(0)"  id="slete0" ></p><img src="images/bg.png" width="350" height="200" class="bord"></li>
+			<li><p class="select" onclick="changeSlect(1)"  id="slete1" ></p><img src="images/bg.png" width="350" height="200" class="bord"></li>
+		</ul>
+		<ul class="right">
+			<li><p class="select" onclick="changeSlect(2)"  id="slete2" ></p><img src="images/bg.png" width="350" height="200" class="bord"></li>
+			<li><p class="select" onclick="changeSlect(3)"  id="slete3" ></p><img src="images/bg.png" width="350" height="200" class="bord"></li>
+		</ul>
+	</div>
+	<div id="page1">
+		<ul class="left">
+			<li><p class="select" onclick="changeSlect(4)"  id="slete4" ></p><img src="images/a_bg.png" width="350" height="200" class="bord"></li>
+			<li><p class="select" onclick="changeSlect(5)"  id="slete5" ></p><img src="images/bg.png" width="350" height="200" class="bord"></li>
+		</ul>
+		<ul class="right">
+			<li><p class="select" onclick="changeSlect(6)"  id="slete6" ></p><img src="images/bg.png" width="350" height="200" class="bord"></li>
+			<li><p class="select" onclick="changeSlect(7)"  id="slete7" ></p><img src="images/bg.png" width="350" height="200" class="bord"></li>
+		</ul>
+	</div>
+	<div id="page2">
+		<ul class="left">
+			<li><p class="select" onclick="changeSlect(8)"  id="slete8" ></p><img src="images/dy_bg.png" width="350" height="200" class="bord"></li>
+			<li><p class="select" onclick="changeSlect(9)"  id="slete9" ></p><img src="images/bg.png" width="350" height="200" class="bord"></li>
+		</ul>
+		<ul class="right">
+			<li><p class="select" onclick="changeSlect(10)"  id="slete10" ></p><img src="images/bg.png" width="350" height="200" class="bord"></li>
+			<li><p class="select" onclick="changeSlect(11)"  id="slete11" ></p><img src="images/bg.png" width="350" height="200" class="bord"></li>
+		</ul>
+	</div>
+	<div id="page3">
+		<ul class="left">
+			<li><p class="select" onclick="changeSlect(12)"  id="slete12" ></p><img src="images/yin_bg.png" width="350" height="200" class="bord"></li>
+			<li><p class="select" onclick="changeSlect(13)"  id="slete13" ></p><img src="images/bg.png" width="350" height="200" class="bord"></li>
+		</ul>
+		<ul class="right">
+			<li><p class="select" onclick="changeSlect(14)"  id="slete14" ></p><img src="images/bg.png" width="350" height="200" class="bord"></li>
+			<li><p class="select" onclick="changeSlect(15)"  id="slete15" ></p><img src="images/bg.png" width="350" height="200" class="bord"></li>
+		</ul>
+	</div>
+</div>
+
+	<div id="btpage" style="width:803px;height:70px;">
+		<div style="width:600px;height:43px;margin:14px;float:left;position:relative;">
+			<div  class="preview" onclick="prev()"></div>
+			<div  class="text">1/10</div>
+			<div  class="next"onclick="nex()"></div>
+		</div>
+		<div class="print" style="" onclick="WindowPrint()" ></div>
+	</div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>電子拼音圖卡</title>
+	<link href="css/index.css" rel="stylesheet" type="text/css" />
+	<link href="css/loadprogress.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+var divNum=60;
+var loadNum=0;
+(function(){
+	/*計數*/
+	var timer=setInterval(
+			function(){
+				if(loadNum<=20){
+					loadNum++;
+				}else if(document.getElementById("zoom")){
+					if(loadNum<=40){
+						loadNum++;
+					}else if($){
+						if(loadNum<60){
+							loadNum++;
+						}else{
+							clearInterval(timer);
+						}
+					}
+				}
+			},
+		17);
+})();
+
+
+</script>
+<style type="text/css" rel="stylesheet">
+*{margin:0;padding:0;}
+a:focus {outline:none;-moz-outline:none;}
+a{text-decoration:none;blr:expression_r(this.onFocus=this.blur());}
+@font-face {
+font-family: '2000-hanyin';
+src: url('font/hanyin.eot');
+src: local('hanyin Regular'),
+             local('hanyin'),
+             url('font/hanyin.woff') format('woff'),
+             url('font/hanyin.ttf') format('truetype'),
+             url('font/hanyin.svg#hanyin') format('svg');
+}
+/*alert*/
+#cwxBg{ position:absolute; display:none; background:#000; width:100%; height:100%; left:0px; top:0px; z-index:1000;}
+#cwxWd{ position:absolute; display:none; z-index:1500;}
+#cwxCn{ background:#fff; display:block;padding:2px;height:12px;overflow:hide; -webkit-border-raidus:3px;-moz-border-radius:3px;border-radius:3px}
+
+#bg{width:803px;height:600px;background:url(images/bg.png) no-repeat left top;margin:0 auto;position:relative;}
+/*lie yin*/
+#hd{width:803px;height:68px;position:relative;z-index:2px;}
+.hdclass1{position:absolute;left:590px;top:0;width:104px;height:66px;background:url(images/xuexi_h.png);}
+.hdclass0{position:absolute;left:590px;top:0;width:104px;height:66px;background:url(images/xuexi.png);}
+.hdclass0:hover{background:url(images/xuexi_h.png);}
+.hdclass3{position:absolute;left:675px;top:0;width:102px;height:67px;background:url(images/lieyin_h.png);}
+.hdclass2{position:absolute;left:675px;top:0;width:102px;height:67px;background:url(images/lieyin.png);}
+.hdclass2:hover{background:url(images/lieyin_h.png);}
+
+/*content*/
+#indexMiddle{position:relative;}
+#md1{width:803px;height:87px;}
+#md2{width:803px;height:400px;position:relative;background:url(images/nav_bg0.gif) repeat-y;}
+#bm_bg{width:803px;height:100px;position:absolute;background:url(images/muban.png) no-repeat top;top:-27px;}
+#md1 ul li{list-style:none;float:left;height:87px;}
+#nav0{width:136px;background:url(images/nav0.png) no-repeat top;}
+#nav0:hover,#nav1:hover,#nav2:hover,#nav3:hover{cursor:pointer}
+#nav1{width:333px;background:url(images/nav_h1.png) no-repeat top;}
+#nav2{width:170px;background:url(images/nav_h2.png) no-repeat top;}
+#nav3{width:164px;background:url(images/nav_h3.png) no-repeat top;}
+/*navigator*/
+#text0{background:url(images/bg5.png) no-repeat top;width:100%;height:100%;}
+#text1{background:url(images/bg5.png) no-repeat top;width:100%;height:100%;display:none;}
+#text2{background:url(images/bg5.png) no-repeat top;width:100%;height:100%;display:none;}
+#text3{background:url(images/bg5.png) no-repeat top;width:100%;height:100%;display:none;}
+.text-left,.text-right{width:390px;height:100%;float:left;}
+.text-right{margin-left:10px;}
+#text1 p,#text2 p{height:120px;text-align:left;padding-left:25px;margin-top:20px;}
+#text1 span,#text2 span{margin:40px 0 0 5px;display:inline-block;}
+#text0 p{height:100px;padding-left:30px;text-align:left;margin-top:20px;}
+#text0 span{margin:20px 0 0 10px;display:inline-block;}
+
+/*input index*/
+#bm{width:803px;height:70px;position:relative;}
+/*sortable*/
+#sortable { list-style-type: none; margin: 0; padding: 0; width: 650px; }
+#sortable li{font-family:"2000-hanyin";font-size:30px; margin: 0px 3px 3px 0; padding: 1px;height:50px;float:left;list-style:none;text-align:center;width:62px}
+#sortable li:hover{cursor:pointer}
+#pinyin{width:803px;height:95px;position:absolute;left:0;top:-27px;}
+#bm_bg{width:803px;height:100px;position:absolute;background:url(images/muban.png) no-repeat top;}
+#tijiao{position:absolute;top:45px;left:700px;background:url(images/queding.png);width:91px;height:40px;}
+#tijiao:hover{background:url(images/queding_h.png);}
+#bottom{background:url(images/shuru_h.png);width:612px;height:52px;position:absolute;top:40px;left:50px;padding-left:20px;z-index:1;}
+#bottomBg{background:url(images/shuru.png);width:632px;height:52px;position:absolute;top:40px;left:50px;z-index:3;}
+
+/*hide area*/
+/*iframe*/
+#md{
+	display:none;width:803px;height:540px;position:relative;background:url(images/waibu_bg.png);
+	-moz-border-radius: 34px;
+	-webkit-border-radius: 24px;
+	border-radius: 24px;
+}
+#contain{width:803px;height:550px;position:absolute;}
+/*bottom*/
+#bm_index{width:803px;height:70px;position:relative;}
+
+/*input area copy*/
+#indexBm{display:none;position:absolute;left:0px;top:60px;}
+/*text hide*/
+#text_rt0{display:none;width:124px;height:12px;position:absolute;left:350px;top:520px;background:url(images/shang.png);z-index:3;}
+#text_rt0:hover{background:url(images/shang_h.png);}
+/*text show*/
+#text_input{width:803px;height:141px;position:absolute;left:0px;top:420px;z-index:3;}
+#text_bg{width:803px;height:141px;position:absolute;left:0px;top:420px;background:url(images/bottom1.png);z-index:3;}
+#text_lf0{width:124px;height:12px;position:absolute;left:350px;top:37px;background:url(images/xia.png);z-index:4;}
+#text_lf0:hover{background:url(images/xia_h.png);}
+#back{width:54px;height:54px;position:absolute;left:10px;top:60px;background:url(images/zhuye.png);z-index:4;}
+#back:hover{background:url(images/zhuye_h.png);}
+/*copy*/
+#ct_ctn ul li{font-family:"2000-hanyin";font-size:30px;margin-left:10px;height:50px;float:left;list-style:none;}
+#ct_ctn ul li:hover{cursor:pointer}
+#ct_ctn{background:url(images/shuru_h.png);width:612px;height:52px;position:absolute;top:60px;left:70px;padding-left:20px;z-index:4;}
+#ct_play{width:70px;height:60px;position:absolute;left:710px;top:55px;background:url(images/autoplay.png);z-index:4;}
+#ct_play:hover{background:url(images/autoplay_h.png);}
+#zoom{width:760px;height:522px;position:absolute;left:0px;top:0px;background:url(images/autoplay.png) no-repeat center;z-index:5;zoom:1.1;left:-20px;top:10px;display:none;}
+</style>
+</head>
+<body>
+<div id="bg">
+<!-- 頭部 -->
+	<div id="hd">
+		<div id="hdPic0" class="hdclass1"  onclick="changeIframe('dayin.html','hdPic0')"></div>
+		<div id="hdPic1" class="hdclass2"  onclick="changeIframe('dayin.html','hdPic1')"></div>
+	</div>
+<!-- 中部 -->
+<div id="indexMiddle">
+<!--navigator-->
+	<div id="md1">
+		<ul>
+			<li id="nav0" onclick="changeBg(0)"></li>
+			<li id="nav1" onclick="changeBg(1)"></li>
+			<li id="nav2" onclick="changeBg(2)"></li>
+			<li id="nav3" onclick="changeBg(3)"></li>
+		</ul>
+	</div>
+<!--text-->
+	<div id="md2">
+		<div id="text0">
+			<div class="text-left">
+				<p>
+				<span class="b"  onclick="changeClass(event,'b')"></span>
+				<span class="p"  onclick="changeClass(event,'p')"></span>
+				<span class="m"  onclick="changeClass(event,'m')"></span>
+				<span class="f"  onclick="changeClass(event,'f')"></span>
+				</p>
+				<p>
+				<span class="g"   onclick="changeClass(event,'g')"></span>
+				<span class="k"  onclick="changeClass(event,'k')"></span>
+				<span class="h"   onclick="changeClass(event,'h')"></span>
+				</p>
+				<p>
+				<span class="zh"  onclick="changeClass(event,'zh')"></span>
+				<span class="ch"  onclick="changeClass(event,'ch')"></span>
+				<span class="sh"  onclick="changeClass(event,'sh')"></span>
+				<span class="r"  onclick="changeClass(event,'r')"></span>
+				</p>
+			</div>
+			<div class="text-right">
+				<p>
+				<span class="d"  onclick="changeClass(event,'d')"></span>
+				<span class="t"  onclick="changeClass(event,'t')"></span>
+				<span class="n"  onclick="changeClass(event,'n')"></span>
+				<span class="l"  onclick="changeClass(event,'l')"></span>
+				</p>
+				<p>
+				<span class="j"  onclick="changeClass(event,'j')"></span>
+				<span class="q"  onclick="changeClass(event,'q')"></span>
+				<span class="x"  onclick="changeClass(event,'x')"></span>
+				</p>
+				<p>
+				<span class="z"  onclick="changeClass(event,'z')"></span>
+				<span class="c"  onclick="changeClass(event,'c')"></span>
+				<span class="s"  onclick="changeClass(event,'s')"></span>
+				</p>
+			</div>
+		</div>
+		<div id="text1">
+			<div class="text-left">
+				<p>
+				<span  class="a" onclick="changeClass(event,'a')"></span>
+				<span  class="o" onclick="changeClass(event,'o')"></span>
+				<span  class="e" onclick="changeClass(event,'e')"></span>
+				</p>
+				<p>
+				<span  class="er" onclick="changeClass(event,'er')"></span>
+				</p>
+			</div>
+			<div class="text-right">
+				<p>
+				<span   class="i" onclick="changeClass(event,'i')"></span>
+				<span  class="u"  onclick="changeClass(event,'u')"></span>
+				<span   class="u1"  onclick="changeClass(event,'u1','=')"></span>
+				</p>
+			</div>
+		</div>
+		<div id="text2">
+			<div class="text-left">
+				<p>
+				<span class="ai"  onclick="changeClass(event,'ai')"></span>
+				<span class="ei"  onclick="changeClass(event,'ei')"></span>
+				<span class="ao"  onclick="changeClass(event,'ao')"></span>
+				<span class="ou"  onclick="changeClass(event,'ou')"></span>
+				</p>
+				<p>
+				<span class="ia"  onclick="changeClass(event,'ia')"></span>
+				<span class="ie"  onclick="changeClass(event,'ie')"></span>
+				<span class="ua"  onclick="changeClass(event,'ua')"></span>
+				<span class="uo"  onclick="changeClass(event,'uo')"></span>
+				</p>
+			</div>
+			<div class="text-right">
+			<p>
+			<span class="iao"   onclick="changeClass(event,'iao')"></span>
+			<span class="iu-iou"   onclick="changeClass(event,'iu-iou','iu','iou')"></span>
+			<span class="uai"  onclick="changeClass(event,'uai')"></span>
+			<span class="ui-uei"  onclick="changeClass(event,'ui-uei','ui','uei')"></span>
+			</p>
+			<p>
+			<span class="u1e"  onclick="changeClass(event,'u1e','=e')"></span>
+			</p>
+			</div>
+		</div>
+		<div id="text3">
+			<div class="text-left">
+				<p>
+				<span class="an"  onclick="changeClass(event,'an')"></span>
+				<span class="ian"  onclick="changeClass(event,'ian')"></span>
+				<span class="uan"  onclick="changeClass(event,'uan')"></span>
+				<span class="u1an"  onclick="changeClass(event,'u1an','=an')"></span>
+				</p>
+				<p>
+				<span class="ang"  onclick="changeClass(event,'ang')"></span>
+				<span class="iang"  onclick="changeClass(event,'iang')"></span>
+				<span class="uang"  onclick="changeClass(event,'uang')"></span>
+				<span class="eng"  onclick="changeClass(event,'eng')"></span>
+				</p>
+			</div>
+			<div class="text-right">
+				<p>
+				<span class="en"  onclick="changeClass(event,'en')"></span>
+				<span class="in"  onclick="changeClass(event,'in')"></span>
+				<span class="un-uen"  onclick="changeClass(event,'un-uen','un')"></span>
+				<span class="u1n"  onclick="changeClass(event,'u1n','=n')"></span>
+				</p>
+				<p>
+				<span class="ing"  onclick="changeClass(event,'ing')"></span>
+				<span class="ueng"  onclick="changeClass(event,'ueng')"></span>
+				<span class="ong"  onclick="changeClass(event,'ong')"></span>
+				<span class="iong"  onclick="changeClass(event,'iong')"></span>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!--bottom-->
+	<div id="bm">
+		<div id="pinyin">
+			<div id="bm_bg">
+				<div id="bottomBg"></div>
+				<div id="bottom">
+					<ul id="sortable">
+						<li id="fast"></li>
+					</ul> 
+				</div>
+				<div id="tijiao" onclick="changeIframe()"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 外部 -->
+	<div id="md">
+		<iframe id="contain" name="ctn" src="" frameborder="0" scrolling="no"></iframe>
+	</div>
+<!--輸入框副本-->
+<div id="indexBm">
+	<!--text hide-->
+	<div id="text_rt0" onclick="troggleNav('#text_rt0','#text_input','#text_bg')" ></div>
+	<!--text show-->
+	<div id="text_bg"></div>
+	<div id="text_input">
+		<div id="text_lf0" onclick="troggleNav('#text_rt0','#text_input','#text_bg')"></div>
+		<div id="back" onclick="changeOSD(0,1)"></div>
+		<!--input text-->
+		<div id="ct_ctn">
+			<ul class="data"></ul>
+		</div>
+		<div id="ct_play" onclick="autoplay()"></div>
+	</div>
+</div>
+<div id="zoom"><div>
+</div>
+</body>
+<script type="text/javascript" src="js/alert.js"></script>
+<script type="text/javascript" src="js/load.js"></script>
+<script src="scripts/jquery-1.9.1.js"></script>
+<script src="scripts/jquery.ui.core.js"></script>
+<script src="scripts/jquery.ui.widget.js"></script>
+<script src="scripts/jquery.ui.mouse.js"></script>
+<script src="scripts/jquery.ui.touch-punch.js"></script>
+<script src="scripts/jquery.ui.sortable.js"></script>
+<script src="js/index.js"></script>
+
+</html>

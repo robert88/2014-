@@ -1,0 +1,385 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>navigator</title>
+<script type="text/javascript" src="scripts/jquery-1.3.1.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.7.1.custom.min.js"></script> 
+<script src="js/dianzika.js"></script>
+<script>
+$(document).ready(function(){
+document.onfocus=function(){return false;}
+document.ondragstart=function(){return false;}
+document.onselect=function(){return false;}
+document.onselectstart=function(){return false;}
+navInit();
+Darginit();
+});
+</script>
+<style>
+*{margin:0;padding:0;}
+#md1{width:803px;height:87px;}
+#md2{width:803px;height:400px;position:relative;background:url(images/nav_bg0.gif) repeat-y;}
+#bm_bg{width:803px;height:100px;position:absolute;background:url(images/muban.png) no-repeat top;top:-27px;}
+#md1 ul li{list-style:none;float:left;height:87px;}
+#nav0{width:136px;background:url(images/nav0.png) no-repeat top;}
+#nav0:hover,#nav1:hover,#nav2:hover,#nav3:hover{cursor:pointer}
+#nav1{width:333px;background:url(images/nav_h1.png) no-repeat top;}
+#nav2{width:170px;background:url(images/nav_h2.png) no-repeat top;}
+#nav3{width:164px;background:url(images/nav_h3.png) no-repeat top;}
+/*navigator*/
+#text0{background:url(images/bg5.png) no-repeat top;width:100%;height:100%;}
+#text1{background:url(images/bg5.png) no-repeat top;width:100%;height:100%;display:none;}
+#text2{background:url(images/bg5.png) no-repeat top;width:100%;height:100%;display:none;}
+#text3{background:url(images/bg5.png) no-repeat top;width:100%;height:100%;display:none;}
+.text-left,.text-right{width:390px;height:100%;float:left;}
+.text-right{margin-left:10px;}
+#text1 p,#text2 p{height:120px;text-align:left;padding-left:25px;margin-top:20px;}
+#text1 span,#text2 span{margin:40px 0 0 5px;display:inline-block;}
+#text0 p{height:100px;padding-left:30px;text-align:left;margin-top:20px;}
+#text0 span{margin:20px 0 0 10px;display:inline-block;}
+/*shengmu*/
+.b,.p,.m,.f,.d,.d,.t,.n,.l,.g,.k,.h,.j,.q,.x,.zh,.ch,.sh,.r,.s,.z,.c{width:60px;height:60px;}
+.b_a,.p_a,.m_a,.f_a,.d_a,.d_a,.t_a,.n_a,.l_a,.g_a,.k_a,.h_a,.j_a,.q_a,.x_a,.zh_a,.ch_a,.sh_a,.r_a,.s_a,.z_a,.c_a{width:60px;height:60px;}
+.b{background:url(images/index_image/b.png) no-repeat center;text-align:center;}
+.b_a{background:url(images/index_image/b_a.png) no-repeat center;text-align:center;}
+.b:hover{background:url(images/index_image/b_h.png) no-repeat center;}
+.p{background:url(images/index_image/p.png) no-repeat center;text-align:center;}
+.p_a{background:url(images/index_image/p_a.png) no-repeat center;text-align:center;}
+.p:hover{background:url(images/index_image/p_h.png) no-repeat center;}
+.m{background:url(images/index_image/m.png) no-repeat center;text-align:center;}
+.m_a{background:url(images/index_image/m_a.png) no-repeat center;text-align:center;}
+.m:hover{background:url(images/index_image/m_h.png) no-repeat center;}
+.f{background:url(images/index_image/f.png) no-repeat center;text-align:center;}
+.f_a{background:url(images/index_image/f_a.png) no-repeat center;text-align:center;}
+.f:hover{background:url(images/index_image/f_h.png) no-repeat center;}
+.d{background:url(images/index_image/d.png) no-repeat center;text-align:center;}
+.d_a{background:url(images/index_image/d_a.png) no-repeat center;text-align:center;}
+.d:hover{background:url(images/index_image/d_h.png) no-repeat center;}
+.t{background:url(images/index_image/t.png) no-repeat center;text-align:center;}
+.t_a{background:url(images/index_image/t_a.png) no-repeat center;text-align:center;}
+.t:hover{background:url(images/index_image/t_h.png) no-repeat center;}
+.n{background:url(images/index_image/n.png) no-repeat center;text-align:center;}
+.n_a{background:url(images/index_image/n_a.png) no-repeat center;text-align:center;}
+.n:hover{background:url(images/index_image/n_h.png) no-repeat center;}
+.l{background:url(images/index_image/l.png) no-repeat center;text-align:center;}
+.l_a{background:url(images/index_image/l_a.png) no-repeat center;text-align:center;}
+.l:hover{background:url(images/index_image/l_h.png) no-repeat center;}
+.g{background:url(images/index_image/g.png) no-repeat center;text-align:center;}
+.g_a{background:url(images/index_image/g_a.png) no-repeat center;text-align:center;}
+.g:hover{background:url(images/index_image/g_h.png) no-repeat center;}
+.k{background:url(images/index_image/k.png) no-repeat center;text-align:center;}
+.k_a{background:url(images/index_image/k_a.png) no-repeat center;text-align:center;}
+.k:hover{background:url(images/index_image/k_h.png) no-repeat center;}
+.h{background:url(images/index_image/h.png) no-repeat center;text-align:center;}
+.h_a{background:url(images/index_image/h_a.png) no-repeat center;text-align:center;}
+.h:hover{background:url(images/index_image/h_h.png) no-repeat center;}
+.j{background:url(images/index_image/j.png) no-repeat center;text-align:center;}
+.j_a{background:url(images/index_image/j_a.png) no-repeat center;text-align:center;}
+.j:hover{background:url(images/index_image/j_h.png) no-repeat center;}
+.q{background:url(images/index_image/q.png) no-repeat center;text-align:center;}
+.q_a{background:url(images/index_image/q_a.png) no-repeat center;text-align:center;}
+.q:hover{background:url(images/index_image/q_h.png) no-repeat center;}
+.x{background:url(images/index_image/x.png) no-repeat center;text-align:center;}
+.x_a{background:url(images/index_image/x_a.png) no-repeat center;text-align:center;}
+.x:hover{background:url(images/index_image/x_h.png) no-repeat center;}
+.zh{background:url(images/index_image/zh.png) no-repeat center;text-align:center;}
+.zh_a{background:url(images/index_image/zh_a.png) no-repeat center;text-align:center;}
+.zh:hover{background:url(images/index_image/zh_h.png) no-repeat center;}
+.ch{background:url(images/index_image/ch.png) no-repeat center;text-align:center;}
+.ch_a{background:url(images/index_image/ch_a.png) no-repeat center;text-align:center;}
+.ch:hover{background:url(images/index_image/ch_h.png) no-repeat center;}
+.sh{background:url(images/index_image/sh.png) no-repeat center;text-align:center;}
+.sh_a{background:url(images/index_image/sh_a.png) no-repeat center;text-align:center;}
+.sh:hover{background:url(images/index_image/sh_h.png) no-repeat center;}
+.r{background:url(images/index_image/r.png) no-repeat center;text-align:center;}
+.r_a{background:url(images/index_image/r_a.png) no-repeat center;text-align:center;}
+.r:hover{background:url(images/index_image/r_h.png) no-repeat center;}
+.s{background:url(images/index_image/s.png) no-repeat center;text-align:center;}
+.s_a{background:url(images/index_image/s_a.png) no-repeat center;text-align:center;}
+.s:hover{background:url(images/index_image/s_h.png) no-repeat center;}
+.z{background:url(images/index_image/z.png) no-repeat center;text-align:center;}
+.z_a{background:url(images/index_image/z_a.png) no-repeat center;text-align:center;}
+.z:hover{background:url(images/index_image/z_h.png) no-repeat center;}
+.c{background:url(images/index_image/c.png) no-repeat center;text-align:center;}
+.c_a{background:url(images/index_image/c_a.png) no-repeat center;text-align:center;}
+.c:hover{background:url(images/index_image/c_h.png) no-repeat center;}
+/*yunmu*/
+#text1 .text-left p{padding:20px 0 0 100px;}
+#text1 .text-right p{padding:20px 0 0 0;}
+.a,.o,.e,.er,.i,.u,.u1{width:72px;height:69px;}
+.a_a,.o_a,.e_a,.er_a,.i_a,.u_a,.u1_a{width:72px;height:69px;}
+.a{background:url(images/index_image/a.png) no-repeat center left;}
+.a_a{background:url(images/index_image/a_a.png) no-repeat center left;}
+.a:hover{background:url(images/index_image/a_h.png) no-repeat center left;}
+.o{background:url(images/index_image/o.png) no-repeat center left;}
+.o_a{background:url(images/index_image/o_a.png) no-repeat center left;}
+.o:hover{;background:url(images/index_image/o_h.png) no-repeat center left;}
+.e{background:url(images/index_image/e.png) no-repeat center left;}
+.e_a{background:url(images/index_image/e_a.png) no-repeat center left;}
+.e:hover{;background:url(images/index_image/e_h.png) no-repeat center left;}
+.er{background:url(images/index_image/er.png) no-repeat center left;}
+.er_a{background:url(images/index_image/er_a.png) no-repeat center left;}
+.er:hover{;background:url(images/index_image/er_h.png) no-repeat center left;}
+.i{background:url(images/index_image/i.png) no-repeat center left;}
+.i_a{background:url(images/index_image/i_a.png) no-repeat center left;}
+.i:hover{;background:url(images/index_image/i_h.png) no-repeat center left;}
+.u{background:url(images/index_image/u.png) no-repeat center left;}
+.u_a{background:url(images/index_image/u_a.png) no-repeat center left;}
+.u:hover{;background:url(images/index_image/u_h.png) no-repeat center left;}
+.u1{background:url(images/index_image/u1.png) no-repeat center left;}
+.u1_a{background:url(images/index_image/u1_a.png) no-repeat center left;}
+.u1:hover{;background:url(images/index_image/u1_h.png) no-repeat center left;}
+/*yunmu*/
+#text2 .text-left p{padding-left:40px;}
+.ai,.ei,.ao,.ou,.iao,.ia,.ie,.ua,.uo,.iu-iou,.uai,.ui-uei,.u1e{width:72px;height:69px;}
+.ai_a,.ei_a,.ao_a,.ou_a,.iao_a,.ia_a,.ie_a,.ua_a,.uo_a,.iu-iou_a,.uai_a,.ui-uei_a,.u1e_a{width:72px;height:69px;}
+.ai{background:url(images/index_image/ai.jpg) no-repeat center left;}
+.ai_a{background:url(images/index_image/ai_a.jpg) no-repeat center left;}
+.ai:hover{;background:url(images/index_image/ai_h.png) no-repeat center left;}
+.ei{background:url(images/index_image/ei.jpg) no-repeat center left;}
+.ei_a{background:url(images/index_image/ei_a.jpg) no-repeat center left;}
+.ei:hover{;background:url(images/index_image/ei_h.png) no-repeat center left;}
+.ao{background:url(images/index_image/ao.jpg) no-repeat center left;}
+.ao_a{background:url(images/index_image/ao_a.jpg) no-repeat center left;}
+.ao:hover{;background:url(images/index_image/ao_h.png) no-repeat center left;}
+.ou{background:url(images/index_image/ou.jpg) no-repeat center left;}
+.ou_a{background:url(images/index_image/ou_a.jpg) no-repeat center left;}
+.ou:hover{;background:url(images/index_image/ou_h.png) no-repeat center left;}
+.iao{background:url(images/index_image/iao.jpg) no-repeat center left;}
+.iao_a{background:url(images/index_image/iao_a.jpg) no-repeat center left;}
+.iao:hover{;background:url(images/index_image/iao_h.png) no-repeat center left;}
+.ia{background:url(images/index_image/ia.jpg) no-repeat center left;}
+.ia_a{background:url(images/index_image/ia_a.jpg) no-repeat center left;}
+.ia:hover{;background:url(images/index_image/ia_h.png) no-repeat center left;}
+.ie{background:url(images/index_image/ie.jpg) no-repeat center left;}
+.ie_a{background:url(images/index_image/ie_a.jpg) no-repeat center left;}
+.ie:hover{;background:url(images/index_image/ie_h.png) no-repeat center left;}
+.ua{background:url(images/index_image/ua.png) no-repeat center left;}
+.ua_a{background:url(images/index_image/ua_a.png) no-repeat center left;}
+.ua:hover{;background:url(images/index_image/ua_h.png) no-repeat center left;}
+.uo{background:url(images/index_image/uo.png) no-repeat center left;}
+.uo_a{background:url(images/index_image/uo_a.png) no-repeat center left;}
+.uo:hover{;background:url(images/index_image/uo_h.png) no-repeat center left;}
+.iu-iou{background:url(images/index_image/iu-iou.jpg) no-repeat center left;}
+.iu-iou_a{background:url(images/index_image/iu-iou_a.jpg) no-repeat center left;}
+.iu-iou:hover{;background:url(images/index_image/iu-iou_h.png) no-repeat center left;}
+.uai{background:url(images/index_image/uai.jpg) no-repeat center left;}
+.uai_a{background:url(images/index_image/uai_a.jpg) no-repeat center left;}
+.uai:hover{;background:url(images/index_image/uai_h.png) no-repeat center left;}
+.ui-uei{background:url(images/index_image/ui-uei.jpg) no-repeat center left;}
+.ui-uei_a{background:url(images/index_image/ui-uei_a.jpg) no-repeat center left;}
+.ui-uei:hover{;background:url(images/index_image/ui-uei_h.png) no-repeat center left;}
+.u1e{background:url(images/index_image/u1e.png) no-repeat center left;}
+.u1e_a{background:url(images/index_image/u1e_a.png) no-repeat center left;}
+.u1e:hover{;background:url(images/index_image/u1e_h.png) no-repeat center left;}
+/*yunmu*/
+.an,.ian,.uan,.u1an,.ang,.iang,.uang,.eng,.en,.in,.un,.u1n,.ing,.ueng,.ong,.iong{width:80px;height:80px;}
+.an_a,.ian_a,.uan_a,.u1an_a,.ang_a,.iang_a,.uang_a,.eng_a,.en_a,.in_a,.un_a,.u1n_a,.ing_a,.ueng_a,.ong_a,.iong_a{width:80px;height:80px;}
+#text3 p{height:120px;text-align:left;margin-top:20px;}
+#text3 span{margin:40px 0 0 0;display:inline-block;}
+#text3 .text-left p{padding-left:40px;}
+.an{background:url(images/index_image/an.jpg) no-repeat center left;}
+.an_a{background:url(images/index_image/an_a.jpg) no-repeat center left;}
+.an:hover{;background:url(images/index_image/an_h.png) no-repeat center left;}
+.en{background:url(images/index_image/en.jpg) no-repeat center left;}
+.en_a{background:url(images/index_image/en_a.jpg) no-repeat center left;}
+.en:hover{;background:url(images/index_image/en_h.png) no-repeat center left;}
+.ian{background:url(images/index_image/ian.jpg) no-repeat center left;}
+.ian_a{background:url(images/index_image/ian_a.jpg) no-repeat center left;}
+.ian:hover{;background:url(images/index_image/ian_h.png) no-repeat center left;}
+.in{background:url(images/index_image/in.jpg) no-repeat center left;}
+.in_a{background:url(images/index_image/in_a.jpg) no-repeat center left;}
+.in:hover{;background:url(images/index_image/in_h.png) no-repeat center left;}
+.uan{background:url(images/index_image/uan.jpg) no-repeat center left;}
+.uan_a{background:url(images/index_image/uan_a.jpg) no-repeat center left;}
+.uan:hover{;background:url(images/index_image/uan_h.png) no-repeat center left;}
+.un-uen{background:url(images/index_image/un-uen.jpg) no-repeat center left;}
+.un-uen_a{background:url(images/index_image/un-uen_a.jpg) no-repeat center left;}
+.un-uen:hover{;background:url(images/index_image/un-uen_h.png) no-repeat center left;}
+.u1an{background:url(images/index_image/u1an.jpg) no-repeat center left;}
+.u1an_a{background:url(images/index_image/u1an_a.jpg) no-repeat center left;}
+.u1an:hover{;background:url(images/index_image/u1an_h.png) no-repeat center left;}
+.u1n{background:url(images/index_image/u1n.jpg) no-repeat center left;}
+.u1n_a{background:url(images/index_image/u1n_a.jpg) no-repeat center left;}
+.u1n:hover{;background:url(images/index_image/u1n_h.png) no-repeat center left;}
+.ang{background:url(images/index_image/ang.jpg) no-repeat center left;}
+.ang_a{background:url(images/index_image/ang_a.jpg) no-repeat center left;}
+.ang:hover{;background:url(images/index_image/ang_h.png) no-repeat center left;}
+.eng{background:url(images/index_image/eng.jpg) no-repeat center left;}
+.eng_a{background:url(images/index_image/eng_a.jpg) no-repeat center left;}
+.eng:hover{;background:url(images/index_image/eng_h.png) no-repeat center left;}
+.ong{background:url(images/index_image/ong.jpg) no-repeat center left;}
+.ong_a{background:url(images/index_image/ong_a.jpg) no-repeat center left;}
+.ong:hover{;background:url(images/index_image/ong_h.png) no-repeat center left;}
+.iang{background:url(images/index_image/iang.jpg) no-repeat center left;}
+.iang_a{background:url(images/index_image/iang_a.jpg) no-repeat center left;}
+.iang:hover{;background:url(images/index_image/iang_h.png) no-repeat center left;}
+.iong{background:url(images/index_image/iong.jpg) no-repeat center left;}
+.iong_a{background:url(images/index_image/iong_a.jpg) no-repeat center left;}
+.iong:hover{;background:url(images/index_image/iong_h.png) no-repeat center left;}
+.ueng{background:url(images/index_image/ueng.jpg) no-repeat center left;}
+.ueng_a{background:url(images/index_image/ueng_a.jpg) no-repeat center left;}
+.ueng:hover{;background:url(images/index_image/ueng_h.png) no-repeat center left;}
+.uang{background:url(images/index_image/uang.jpg) no-repeat center left;}
+.uang_a{background:url(images/index_image/uang_a.jpg) no-repeat center left;}
+.uang:hover{;background:url(images/index_image/uang_h.png) no-repeat center left;}
+.ing{background:url(images/index_image/ing.jpg) no-repeat center left;}
+.ing_a{background:url(images/index_image/ing_a.jpg) no-repeat center left;}
+.ing:hover{;background:url(images/index_image/ing_h.png) no-repeat center left;}
+/*bottom*/
+#bm{width:803px;height:70px;position:relative;}
+#bottom ul li{font-family:"2000-hanyin";font-size:30px;margin-left:10px;height:50px;float:left;list-style:none;}
+#pinyin{width:803px;height:95px;position:absolute;left:0;top:-27px;}
+#bm_bg{width:803px;height:100px;position:absolute;background:url(images/muban.png) no-repeat top;}
+#tijiao{position:absolute;top:45px;left:700px;background:url(images/queding.png);width:91px;height:40px;}
+#tijiao:hover{background:url(images/queding_h.png);}
+#bottom{background:url(images/shuru_h.png);width:612px;height:52px;position:absolute;top:40px;left:50px;padding-left:20px;z-index:1;}
+#bottomBg{background:url(images/shuru.png);width:632px;height:52px;position:absolute;top:40px;left:50px;z-index:3;}
+</style>
+</head>
+<body>
+<div>
+<!--navigator-->
+	<div id="md1">
+		<ul>
+			<li id="nav0" onclick="changeBg(0)"></li>
+			<li id="nav1" onclick="changeBg(1)"></li>
+			<li id="nav2" onclick="changeBg(2)"></li>
+			<li id="nav3" onclick="changeBg(3)"></li>
+		</ul>
+	</div>
+<!--text-->
+	<div id="md2">
+	<div id="text0">
+		<div class="text-left">
+			<p>
+			<span class="b"  onclick="changeClass(event,'b')"></span>
+			<span class="p"  onclick="changeClass(event,'p')"></span>
+			<span class="m"  onclick="changeClass(event,'m')"></span>
+			<span class="f"  onclick="changeClass(event,'f')"></span>
+			</p>
+			<p>
+			<span class="g"   onclick="changeClass(event,'g')"></span>
+			<span class="k"  onclick="changeClass(event,'k')"></span>
+			<span class="h"   onclick="changeClass(event,'h')"></span>
+			</p>
+			<p>
+			<span class="zh"  onclick="changeClass(event,'zh')"></span>
+			<span class="ch"  onclick="changeClass(event,'ch')"></span>
+			<span class="sh"  onclick="changeClass(event,'sh')"></span>
+			<span class="r"  onclick="changeClass(event,'r')"></span>
+			</p>
+		</div>
+		<div class="text-right">
+			<p>
+			<span class="d"  onclick="changeClass(event,'d')"></span>
+			<span class="t"  onclick="changeClass(event,'t')"></span>
+			<span class="n"  onclick="changeClass(event,'n')"></span>
+			<span class="l"  onclick="changeClass(event,'l')"></span>
+			</p>
+			<p>
+			<span class="j"  onclick="changeClass(event,'j')"></span>
+			<span class="q"  onclick="changeClass(event,'q')"></span>
+			<span class="x"  onclick="changeClass(event,'x')"></span>
+			</p>
+			<p>
+			<span class="z"  onclick="changeClass(event,'z')"></span>
+			<span class="c"  onclick="changeClass(event,'c')"></span>
+			<span class="s"  onclick="changeClass(event,'s')"></span>
+			</p>
+		</div>
+	</div>
+	<div id="text1">
+		<div class="text-left">
+			<p>
+			<span  class="a" onclick="changeClass(event,'a')"></span>
+			<span  class="o" onclick="changeClass(event,'o')"></span>
+			<span  class="e" onclick="changeClass(event,'e')"></span>
+			</p>
+			<p>
+			<span  class="er" onclick="changeClass(event,'er')"></span>
+			</p>
+		</div>
+		<div class="text-right">
+			<p>
+			<span   class="i" onclick="changeClass(event,'i')"></span>
+			<span  class="u"  onclick="changeClass(event,'u')"></span>
+			<span   class="u1"  onclick="changeClass(event,'u1','=')"></span>
+			</p>
+		</div>
+	</div>
+	<div id="text2">
+		<div class="text-left">
+			<p>
+			<span class="ai"  onclick="changeClass(event,'ai')"></span>
+			<span class="ei"  onclick="changeClass(event,'ei')"></span>
+			<span class="ao"  onclick="changeClass(event,'ao')"></span>
+			<span class="ou"  onclick="changeClass(event,'ou')"></span>
+			</p>
+			<p>
+			<span class="ia"  onclick="changeClass(event,'ia')"></span>
+			<span class="ie"  onclick="changeClass(event,'ie')"></span>
+			<span class="ua"  onclick="changeClass(event,'ua')"></span>
+			<span class="uo"  onclick="changeClass(event,'uo')"></span>
+			</p>
+		</div>
+		<div class="text-right">
+		<p>
+		<span class="iao"   onclick="changeClass(event,'iao')"></span>
+		<span class="iu-iou"   onclick="changeClass(event,'iu-iou','iu')"></span>
+		<span class="uai"  onclick="changeClass(event,'uai')"></span>
+		<span class="ui-uei"  onclick="changeClass(event,'ui-uei','ui')"></span>
+		</p>
+		<p>
+		<span class="u1e"  onclick="changeClass(event,'u1e','=e')"></span>
+		</p>
+		</div>
+	</div>
+	<div id="text3">
+		<div class="text-left">
+			<p>
+			<span class="an"  onclick="changeClass(event,'an')"></span>
+			<span class="ian"  onclick="changeClass(event,'ian')"></span>
+			<span class="uan"  onclick="changeClass(event,'uan')"></span>
+			<span class="u1an"  onclick="changeClass(event,'u1an','=an')"></span>
+			</p>
+			<p>
+			<span class="ang"  onclick="changeClass(event,'ang')"></span>
+			<span class="iang"  onclick="changeClass(event,'iang')"></span>
+			<span class="uang"  onclick="changeClass(event,'uang')"></span>
+			<span class="eng"  onclick="changeClass(event,'eng')"></span>
+			</p>
+		</div>
+		<div class="text-right">
+			<p>
+			<span class="en"  onclick="changeClass(event,'en')"></span>
+			<span class="in"  onclick="changeClass(event,'in')"></span>
+			<span class="un-uen"  onclick="changeClass(event,'un-uen','un')"></span>
+			<span class="u1n"  onclick="changeClass(event,'u1n','=n')"></span>
+			</p>
+			<p>
+			<span class="ing"  onclick="changeClass(event,'ing')"></span>
+			<span class="ueng"  onclick="changeClass(event,'ueng')"></span>
+			<span class="ong"  onclick="changeClass(event,'ong')"></span>
+			<span class="iong"  onclick="changeClass(event,'iong')"></span>
+			</p>
+		</div>
+	</div>
+<!--bottom-->
+	<div id="bm">
+		<div id="pinyin">
+			<div id="bm_bg">
+				<div id="bottomBg"></div>
+				<div id="bottom">
+					<ul class="ui-sortable">
+					</ul> 
+				</div>
+				<div id="tijiao"></div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+	
